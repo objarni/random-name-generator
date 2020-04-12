@@ -1,28 +1,13 @@
-module Tests.Random.Name exposing (suite1, suite2)
+module Tests.Random.Name exposing (suite)
 
 import Expect exposing (Expectation)
-import Fuzz exposing (Fuzzer, int, list, string)
 import Random
-import Random.Name exposing (randomElement, randomName)
+import Random.Name exposing (dimension, randomName)
 import Test exposing (..)
 
 
-suite1 : Test
-suite1 =
-    describe
-        "testing choose"
-        [ test "it will produce Just 2" <|
-            \() ->
-                let
-                    ( element, _ ) =
-                        Random.step Random.Name.randomElement (Random.initialSeed 0)
-                in
-                Expect.equal element (Just 2)
-        ]
-
-
-suite2 : Test
-suite2 =
+suite : Test
+suite =
     describe "random name generator library"
         [ describe "randomName"
             [ test "it will produce a nice dashed random name string" <|
@@ -31,6 +16,30 @@ suite2 =
                         ( name, _ ) =
                             Random.step Random.Name.randomName (Random.initialSeed 0)
                     in
-                    Expect.equal name "5-happy-monkeys"
+                    Expect.equal name "2-enthusiastic-monkeys"
+            ]
+        , describe "randomNameFromSpace"
+            [ test "it will produce a random name from given space" <|
+                \() ->
+                    let
+                        starts =
+                            dimension "1" "2" []
+
+                        mids =
+                            dimension "secret" "bewildered" [ "crazy", "mad" ]
+
+                        ends =
+                            dimension "aunty" "uncle" [ "grandma" ]
+
+                        space =
+                            { starts = starts, mids = mids, ends = ends }
+
+                        generator =
+                            Random.Name.randomNameFromSpace space
+
+                        ( name, _ ) =
+                            Random.step generator (Random.initialSeed 0)
+                    in
+                    Expect.equal name "1-secret-uncle"
             ]
         ]

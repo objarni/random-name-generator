@@ -59,18 +59,32 @@ randomNameInternal { starts, mids, ends } =
 
 
 builtinStart =
-    Dim "2" "3" [ "5" ]
+    Dim "2" "3" [ "5", "7", "12", "20", "60", "500" ]
 
 
 builtinMid =
     Dim
         "enthusiastic"
         "happy"
-        [ "grateful" ]
+        [ "grateful"
+        , "solemn"
+        , "angry"
+        , "eager"
+        , "surprised"
+        ]
 
 
 builtinEnd =
-    Dim "cows" "monkeys" [ "owls" ]
+    Dim "cows"
+        "monkeys"
+        [ "owls"
+        , "hippos"
+        , "spiders"
+        , "snakes"
+        , "dogs"
+        , "cats"
+        , "horses"
+        ]
 
 
 pickString : ( Maybe String, List String ) -> Random.Generator String

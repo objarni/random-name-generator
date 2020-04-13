@@ -22,8 +22,8 @@ randomNameFromSpace space =
         (randomNameInternal space)
 
 
-dimension first second rest =
-    Dim first second rest
+dimension first rest =
+    Dim first rest
 
 
 
@@ -42,7 +42,7 @@ type alias Space =
 
 
 type Dim
-    = Dim String String (List String)
+    = Dim String (List String)
 
 
 
@@ -59,14 +59,14 @@ randomNameInternal { starts, mids, ends } =
 
 
 builtinStart =
-    Dim "2" "3" [ "5", "7", "12", "20", "60", "500" ]
+    Dim "2" [ "3", "5", "7", "12", "20", "60", "500" ]
 
 
 builtinMid =
     Dim
         "enthusiastic"
-        "happy"
-        [ "grateful"
+        [ "happy"
+        , "grateful"
         , "solemn"
         , "angry"
         , "eager"
@@ -76,8 +76,8 @@ builtinMid =
 
 builtinEnd =
     Dim "cows"
-        "monkeys"
-        [ "owls"
+        [ "monkeys"
+        , "owls"
         , "hippos"
         , "spiders"
         , "snakes"
@@ -107,5 +107,5 @@ toString { start, mid, end } =
 
 
 pickFrom : Dim -> Random.Generator String
-pickFrom (Dim first second rest) =
-    Random.uniform first (second :: rest)
+pickFrom (Dim first rest) =
+    Random.uniform first rest

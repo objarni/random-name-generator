@@ -16,20 +16,20 @@ suite =
                         ( name, _ ) =
                             Random.step Random.Name.randomName (Random.initialSeed 0)
                     in
-                    Expect.equal name "2-enthusiastic-monkeys"
+                    Expect.equal name "2-happy-snakes"
             ]
         , describe "randomNameFromSpace"
             [ test "it will produce a random name from given space" <|
                 \() ->
                     let
                         starts =
-                            dimension "1" "2" []
+                            dimension "1" [ "2" ]
 
                         mids =
-                            dimension "secret" "bewildered" [ "crazy", "mad" ]
+                            dimension "secret" [ "bewildered", "crazy", "mad" ]
 
                         ends =
-                            dimension "aunty" "uncle" [ "grandma" ]
+                            dimension "aunty" [ "uncle", "grandma" ]
 
                         space =
                             { starts = starts, mids = mids, ends = ends }

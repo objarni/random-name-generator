@@ -10,9 +10,9 @@ update msg model =
     let
         mySpace =
             space
-                { starts = dimension "2" "3" [ "4", "5" ]
-                , mids = dimension "happy" "humble" [ "stubborn" ]
-                , ends = dimension "monkeys" "owls" []
+                { starts = dimension "2" [ "3", "4", "5" ]
+                , mids = dimension "happy" [ "humble", "stubborn" ]
+                , ends = dimension "monkeys" [ "owls" ]
                 }
 
         myRandomizer =
